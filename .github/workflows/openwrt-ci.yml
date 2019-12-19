@@ -94,12 +94,36 @@ jobs:
           # 无论你想要对固件进行怎样的定制, 都需要且只需要修改 EOF 回环内的内容.
           # 
 
-          # 编译x64固件:
+          # 编译newifi3固件:
           # cat >> .config <<EOF
-          #   CONFIG_TARGET_x86=y
-          #   CONFIG_TARGET_x86_64=y
-          #   CONFIG_TARGET_x86_64_Generic=y
-          # EOF
+          CONFIG_MODULES=y
+          CONFIG_HAVE_DOT_CONFIG=y
+          CONFIG_TARGET_ramips=y
+          CONFIG_TARGET_ramips_mt7621=y
+          CONFIG_TARGET_ramips_mt7621_DEVICE_d-team_newifi-d2=y
+          CONFIG_HAS_SUBTARGETS=y
+          CONFIG_HAS_DEVICES=y
+          CONFIG_TARGET_BOARD="ramips"
+          CONFIG_TARGET_SUBTARGET="mt7621"
+          CONFIG_TARGET_PROFILE="DEVICE_d-team_newifi-d2"
+          CONFIG_TARGET_ARCH_PACKAGES="mipsel_24kc"
+          CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc"
+          CONFIG_CPU_TYPE="24kc"
+          CONFIG_LINUX_4_14=y
+          CONFIG_DEFAULT_base-files=y
+          CONFIG_DEFAULT_block-mount=y
+          CONFIG_DEFAULT_busybox=y
+          CONFIG_DEFAULT_ca-certificates=y
+          CONFIG_DEFAULT_coremark=y
+          CONFIG_DEFAULT_ddns-scripts_aliyun=y
+          CONFIG_DEFAULT_default-settings=y
+          CONFIG_DEFAULT_dnsmasq-full=y
+          CONFIG_DEFAULT_dropbear=y
+          CONFIG_DEFAULT_firewall=y
+          CONFIG_DEFAULT_fstools=y
+          CONFIG_DEFAULT_iptables=y
+          CONFIG_DEFAULT_iwinfo=y
+          EOF
 
           # 固件压缩:
           # cat >> .config <<EOF
@@ -118,49 +142,53 @@ jobs:
           # EOF
 
           # 多文件系统支持:
-          # cat >> .config <<EOF
-          #   CONFIG_PACKAGE_kmod-fs-nfs=y
-          #   CONFIG_PACKAGE_kmod-fs-nfs-common=y
-          #   CONFIG_PACKAGE_kmod-fs-nfs-v3=y
-          #   CONFIG_PACKAGE_kmod-fs-nfs-v4=y
-          #   CONFIG_PACKAGE_kmod-fs-ntfs=y
-          #   CONFIG_PACKAGE_kmod-fs-squashfs=y
-          # EOF
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_kmod-fs-nfs=y
+          CONFIG_PACKAGE_kmod-fs-nfs-common=y
+          CONFIG_PACKAGE_kmod-fs-nfs-v3=y
+          CONFIG_PACKAGE_kmod-fs-nfs-v4=y
+          CONFIG_PACKAGE_kmod-fs-ntfs=y
+          CONFIG_PACKAGE_kmod-fs-squashfs=y
+          EOF
 
           # USB3.0支持:
-          # cat >> .config <<EOF
-          #   CONFIG_PACKAGE_kmod-usb-ohci=y
-          #   CONFIG_PACKAGE_kmod-usb-ohci-pci=y
-          #   CONFIG_PACKAGE_kmod-usb2=y
-          #   CONFIG_PACKAGE_kmod-usb2-pci=y
-          #   CONFIG_PACKAGE_kmod-usb3=y
-          # EOF
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_kmod-usb-ohci=y
+          CONFIG_PACKAGE_kmod-usb-ohci-pci=y
+          CONFIG_PACKAGE_kmod-usb2=y
+          CONFIG_PACKAGE_kmod-usb2-pci=y
+          CONFIG_PACKAGE_kmod-usb3=y
+          EOF
 
           # 常用LuCI插件选择:
-          # cat >> .config <<EOF
-          #   CONFIG_PACKAGE_luci-app-adbyby-plus=y
-          #   CONFIG_PACKAGE_luci-app-aria2=y
-          #   CONFIG_PACKAGE_luci-app-baidupcs-web=y
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_luci-app-adbyby-plus=y
+          CONFIG_PACKAGE_luci-app-aria2=y
+          CONFIG_PACKAGE_luci-app-baidupcs-web=y
           #   CONFIG_PACKAGE_luci-app-docker=y
-          #   CONFIG_PACKAGE_luci-app-frpc=y
+          CONFIG_PACKAGE_luci-app-frpc=y
           #   CONFIG_PACKAGE_luci-app-hd-idle=y
           #   CONFIG_PACKAGE_luci-app-kodexplorer=y
           #   CONFIG_PACKAGE_luci-app-minidlna=y
           #   CONFIG_PACKAGE_luci-app-openvpn=y
           #   CONFIG_PACKAGE_luci-app-openvpn-server=y
-          #   CONFIG_PACKAGE_luci-app-smartinfo=y
-          #   CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
-          #   CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
+          CONFIG_PACKAGE_luci-app-smartinfo=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
           #   CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
-          #   CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
-          #   CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
-          #   CONFIG_PACKAGE_luci-app-ttyd=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
+          CONFIG_PACKAGE_luci-app-ttyd=y
           #   CONFIG_PACKAGE_luci-app-v2ray-server=y
           #   CONFIG_PACKAGE_luci-app-verysync=y
-          #   CONFIG_PACKAGE_luci-app-webadmin=y
-          #   CONFIG_PACKAGE_luci-app-wireguard=y
-          #   CONFIG_PACKAGE_luci-app-wrtbwmon=y
-          # EOF
+          CONFIG_PACKAGE_luci-app-webadmin=y
+          CONFIG_PACKAGE_luci-app-wireguard=y
+          CONFIG_PACKAGE_luci-app-wrtbwmon=y
+          CONFIG_DEFAULT_luci-app-vsftpd=y
+          CONFIG_DEFAULT_luci-app-zerotier=y
+          CONFIG_mipsel=y
+          CONFIG_ARCH="mipsel"
+          EOF
 
           # LuCI主题:
           # cat >> .config <<EOF
@@ -168,15 +196,22 @@ jobs:
           # EOF
 
           # 常用软件包:
-          # cat >> .config <<EOF
+          cat >> .config <<EOF
           #   CONFIG_PACKAGE_curl=y
           #   CONFIG_PACKAGE_htop=y
           #   CONFIG_PACKAGE_nano=y
           #   CONFIG_PACKAGE_screen=y
           #   CONFIG_PACKAGE_tree=y
           #   CONFIG_PACKAGE_vim-fuller=y
-          #   CONFIG_PACKAGE_wget=y
-          # EOF
+          CONFIG_PACKAGE_wget=y
+          EOF
+          
+          # 目标Images:
+          cat >> .config <<EOF
+          CONFIG_TARGET_ROOTFS_INITRAMFS=y
+          CONFIG_TARGET_INITRAMFS_COMPRESSION_LZMA=y
+          CONFIG_EXTERNAL_CPIO=""
+          EOF
 
           # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
           # cat >> .config <<EOF
