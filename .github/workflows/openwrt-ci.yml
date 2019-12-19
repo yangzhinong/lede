@@ -95,7 +95,7 @@ jobs:
           # 
 
           # 编译newifi3固件:
-          # cat >> .config <<EOF
+          cat >> .config <<EOF
           CONFIG_MODULES=y
           CONFIG_HAVE_DOT_CONFIG=y
           CONFIG_TARGET_ramips=y
