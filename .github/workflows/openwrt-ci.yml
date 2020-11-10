@@ -59,7 +59,7 @@ jobs:
           cd package
           mkdir openwrt-packages
           cd openwrt-packages
-          git clone https://github.com/tzxiaozhen88/luci-app-koolproxyR.git
+          # git clone https://github.com/tzxiaozhen88/luci-app-koolproxyR.git
           git clone https://github.com/kuoruan/luci-app-v2ray.git
 
       - name: Update feeds
@@ -196,7 +196,7 @@ jobs:
           CONFIG_DEFAULT_luci-app-vsftpd=y
           CONFIG_DEFAULT_luci-app-zerotier=y
           #  my trojan-- 第三方插件,参见57行,git clone
-          CONFIG_DEFAULT_luci-app-koolproxyR=y
+          # CONFIG_DEFAULT_luci-app-koolproxyR=y
           CONFIG_DEFAULT_luci-app-v2ray=y
           CONFIG_mipsel=y
           CONFIG_ARCH="mipsel"
